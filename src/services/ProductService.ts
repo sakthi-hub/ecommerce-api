@@ -42,11 +42,12 @@ export class ProductService {
             const name = _userData.name;
             const description = _userData.description;
             const price = _userData.price;
-            const varientInput = _userData.varient;
+            const color = _userData.color;
+            const size = _userData.size;
   
-            await productModel.update({"_id": id}, {"$set": {"name": name,"description": description,"price": price}}, {upsert: true});
+            await productModel.updateOne({"_id": id}, {"$set": {"name": name,"description": description,"price": price}}, {upsert: true});
            
-            await varientModel.update({"productId": id}, {"$set": {"varient": varientInput}}, {upsert: true});
+            await varientModel.updateOne({"productId": id}, {"$set": {"color": color,"size": size}}, {upsert: true});
              
 
             return true;
