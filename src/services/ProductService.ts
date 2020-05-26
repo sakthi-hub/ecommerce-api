@@ -19,6 +19,30 @@ export class ProductService {
             const size = _userData.size;
             const color = _userData.color;
 
+            var myString1:string="";
+
+            for(var i=0;i<size.length;i++){
+
+              var myString2:string="";
+            
+            for(var j=0; j<color.length;j++){
+
+              myString2 +=  size[i].itemName + ' - ' + color[j].itemName + ',';
+
+            }
+           
+            myString1 +=  myString2;
+
+            
+            }
+
+            
+            const varObject:any ={
+                    
+              varient : myString1.substring(0, myString1.length - 1)
+
+              }
+
            
 
             const product = new productModel({name: name,description: description,price: price});
@@ -28,7 +52,7 @@ export class ProductService {
             const productId=product._id
 
 
-            const varient = new varientModel({productId: productId,size:size,color:color});
+            const varient = new varientModel({productId: productId,size:size,color:color,varient:varObject});
             await varient.save();
 
             return true;
@@ -44,10 +68,34 @@ export class ProductService {
             const price = _userData.price;
             const color = _userData.color;
             const size = _userData.size;
+
+            var myString1:string="";
+
+            for(var i=0;i<size.length;i++){
+
+              var myString2:string="";
+            
+            for(var j=0; j<color.length;j++){
+
+              myString2 +=  size[i].itemName + ' - ' + color[j].itemName + ',';
+
+            }
+           
+            myString1 +=  myString2;
+
+            
+            }
+
+            
+            const varObject:any ={
+                    
+              varient : myString1.substring(0, myString1.length - 1)
+
+              }
   
             await productModel.updateOne({"_id": id}, {"$set": {"name": name,"description": description,"price": price}}, {upsert: true});
            
-            await varientModel.updateOne({"productId": id}, {"$set": {"color": color,"size": size}}, {upsert: true});
+            await varientModel.updateOne({"productId": id}, {"$set": {"color": color,"size": size,"varient": varObject}}, {upsert: true});
              
 
             return true;
@@ -58,7 +106,6 @@ export class ProductService {
           async productList() {
 
             const productList= await varientModel.find().populate('productId'); 
-             
             return productList;
           
           }

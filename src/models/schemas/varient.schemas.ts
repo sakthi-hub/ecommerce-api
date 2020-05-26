@@ -11,7 +11,13 @@ const varientSchema = new mongoose.Schema({
     }],
     color : [{
       itemName : String,
-  }]
+  }],
+
+  varient : {
+    varient : String,
+},
+  
+ 
 },
 
 {timestamps: true});
