@@ -33,7 +33,7 @@
     "moment": "^2.24.0",
     "mongoose": "^5.7.1",
     "node-async-loop": "^1.2.2",
-    "nodemailer": "^6.3.0",
+    "nodemailer": "^6.4.16",
     "ts-mongoose": "0.0.19",
     "ts-node-dev": "^1.0.0-pre.42",
     "urlencode": "^1.1.0",
